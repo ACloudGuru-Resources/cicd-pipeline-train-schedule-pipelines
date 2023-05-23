@@ -1,4 +1,3 @@
-CODE_CHANGES = getChanges()
 pipeline {
   agent any
   stages {
