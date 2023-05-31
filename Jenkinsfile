@@ -55,7 +55,7 @@ pipeline {
             parallel {
                 stage('Staging 1') {
                     steps {
-                        echo 'testing the app'
+                        echo 'Staging the app'
                     }
                 }
                 stage('Staging 2') {
