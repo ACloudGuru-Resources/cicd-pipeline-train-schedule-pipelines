@@ -46,7 +46,7 @@ pipeline {
                         echo 'edge test'
                     }
                 }
-                }
+                
             }
         }
 
