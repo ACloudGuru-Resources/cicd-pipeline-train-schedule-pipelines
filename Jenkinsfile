@@ -26,7 +26,9 @@ pipeline {
                     }
                 }
                 stage ('unittest') {
-                    echo 'unit testing'
+                    steps {
+                        echo 'unit testing'
+                    }
                 }
             }
         }
@@ -37,19 +39,18 @@ pipeline {
                         echo 'Chrome test'
                     }
                 }
-                stage ('firefoxtest') {
+                stage ('firefox test') {
                     steps {
                         echo 'firefox test'
                     }
-                stage ('edgetest') {
+                }
+                stage ('edge test') {
                     steps {
                         echo 'edge test'
                     }
                 }
-                
             }
         }
-
         stage('Staging') {
             parallel {
                 stage('Staging 1') {
@@ -62,6 +63,11 @@ pipeline {
                         echo 'deploying the app'
                     }
                 }
+            }
+        }
+        stage('Production') {
+            steps {
+                echo "Deploying the application... with ${NEW_VERSION}"
             }
         }
     }
