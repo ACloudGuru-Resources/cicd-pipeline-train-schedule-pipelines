@@ -25,23 +25,23 @@ pipeline {
                         echo 'db testing'
                     }
                 }
-                stage ('unit test') {
+                stage ('unittest') {
                     echo 'unit testing'
                 }
             }
         }
-        stage('Browse Test') {
+        stage('BrowseTest') {
             parallel {
                 stage ('chrome test') {
                     steps {
                         echo 'Chrome test'
                     }
                 }
-                stage ('firefox test') {
+                stage ('firefoxtest') {
                     steps {
                         echo 'firefox test'
                     }
-                stage ('edge test') {
+                stage ('edgetest') {
                     steps {
                         echo 'edge test'
                     }
@@ -65,11 +65,10 @@ pipeline {
                 }
             }
         }
+
         stage('Production') { 
-            stage('Staging 1') {
-                steps {
-                    echo "Deploying the application... with ${NEW_VERSION}"
-                }
+            steps {
+                echo "Deploying the application... with ${NEW_VERSION}"
             }
         }
     }
