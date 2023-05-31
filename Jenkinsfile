@@ -4,22 +4,33 @@ pipeline {
     stages {
         stage('Parallel Stage') {
             parallel {
-                stage('Stage 1') {
+                stage('init') {
                     steps {
-                        echo 'Running Stage 1'
-                        // Add your build steps for Stage 1 here
+                        echo "building version  init"
+
                     }
                 }
-                stage('Stage 2') {
+
+                stage('build') {
                     steps {
-                        echo 'Running Stage 2'
-                        // Add your build steps for Stage 2 here
+                        echo "building version ${NEW_VERSION}"
                     }
                 }
-                stage('Stage 3') {
+
+                stage('test') {
+                    when {
+                        expression {
+                            BRANCH_NAME == 'master' || BRANCH_NAME == 'dev'
+                        }
+                    }
                     steps {
-                        echo 'Running Stage 3'
-                        // Add your build steps for Stage 3 here
+                        echo 'testing the app'
+                    }
+                }
+
+                stage('deploy') {
+                    steps {
+                        echo 'deploying the app'
                     }
                 }
             }
