@@ -20,23 +20,7 @@ pipeline {
                         }
                     }
                 }
-                stage('build') {
-                    when {
-                        // Execute this stage only if the executeTests parameter is true
-                        expression {
-                            params.executeTests
-                        }
-                    }
-                    steps {
-                        script {
-                            gv.buildApp()
-                        }
-                        // Access the value of the environmental variable without using double quotes
-                        echo "building version ${NEW_VERSION}"
-                    }
-                }
             }
-        }
         stage('Parallel Stage 2') {
             parallel {
                 stage('test') {
