@@ -60,7 +60,6 @@ pipeline {
                 stage('staging 2') {
                     steps {
                         echo 'deploying the app'
-                        echo "deploying version ${params.VERSION}"
                     }
                 }
             }
