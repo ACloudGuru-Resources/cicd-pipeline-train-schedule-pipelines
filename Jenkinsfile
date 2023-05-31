@@ -13,16 +13,11 @@ pipeline {
 
                 stage('build') {
                     steps {
-                        echo "building version ${NEW_VERSION}"
+                        echo "building version"
                     }
                 }
 
                 stage('test') {
-                    when {
-                        expression {
-                            BRANCH_NAME == 'master' || BRANCH_NAME == 'dev'
-                        }
-                    }
                     steps {
                         echo 'testing the app'
                     }
