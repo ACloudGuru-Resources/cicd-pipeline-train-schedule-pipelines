@@ -11,7 +11,7 @@ pipeline {
         NEW_VERSION = '1.3.0'
     }
     stages {
-        stage('Parallel Stage 1') {
+        stage('Test') {
             parallel {
                 stage('init') {
                     steps {
@@ -20,31 +20,55 @@ pipeline {
                         }
                     }
                 }
-                stage('build') {
-                    when {
-                        // Execute this stage only if the executeTests parameter is true
-                        expression {
-                            params.executeTests
-                        }
-                    }
+                stage('dbtest') {
                     steps {
-                        echo "building version ${NEW_VERSION}"
+                        echo 'db testing'
                     }
+                }
+                stage ('unit test') {
+                    echo 'unit testing'
                 }
             }
         }
-        stage('Parallel Stage 2') {
+        stage('Browse Test') {
             parallel {
-                stage('test') {
+                stage ('chrome test') {
+                    steps {
+                        echo 'Chrome test'
+                    }
+                }
+                stage ('firefox test') {
+                    steps {
+                        echo 'firefox test'
+                    }
+                stage ('edge test') {
+                    steps {
+                        echo 'edge test'
+                    }
+                }
+                }
+            }
+        }
+
+        stage('Staging') {
+            parallel {
+                stage('Staging 1') {
                     steps {
                         echo 'testing the app'
                     }
                 }
-                stage('deploy') {
+                stage('staging 2') {
                     steps {
                         echo 'deploying the app'
                         echo "deploying version ${params.VERSION}"
                     }
+                }
+            }
+        }
+        stage('Production') { 
+            stage('Staging 1') {
+                steps {
+                    echo "Deploying the application... with ${NEW_VERSION}"
                 }
             }
         }
