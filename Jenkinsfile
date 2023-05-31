@@ -64,11 +64,5 @@ pipeline {
                 }
             }
         }
-
-        stage('Production') { 
-            steps {
-                echo "Deploying the application... with ${NEW_VERSION}"
-            }
-        }
     }
 }
