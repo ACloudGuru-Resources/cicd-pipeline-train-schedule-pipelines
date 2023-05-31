@@ -20,31 +20,31 @@ pipeline {
                         }
                     }
                 }
-                stage('dbtest') {
+                stage('db test') {
                     steps {
                         echo 'db testing'
                     }
                 }
-                stage ('unittest') {
+                stage ('Unit test') {
                     steps {
                         echo 'unit testing'
                     }
                 }
             }
         }
-        stage('BrowseTest') {
+        stage('Browser Test') {
             parallel {
-                stage ('chrome test') {
+                stage ('Chrome test') {
                     steps {
                         echo 'Chrome test'
                     }
                 }
-                stage ('firefox test') {
+                stage ('Firefox test') {
                     steps {
                         echo 'firefox test'
                     }
                 }
-                stage ('edge test') {
+                stage ('Edge test') {
                     steps {
                         echo 'edge test'
                     }
@@ -58,9 +58,9 @@ pipeline {
                         echo 'testing the app'
                     }
                 }
-                stage('staging 2') {
+                stage('Staging 2') {
                     steps {
-                        echo 'deploying the app'
+                        echo 'Staging the app...'
                     }
                 }
             }
