@@ -28,6 +28,9 @@ pipeline {
                         }
                     }
                     steps {
+                        script {
+                            gv.buildApp()
+                        }
                         // Access the value of the environmental variable without using double quotes
                         echo "building version ${NEW_VERSION}"
                     }
@@ -37,12 +40,6 @@ pipeline {
         stage('Parallel Stage 2') {
             parallel {
                 stage('test') {
-                    when {
-                        // Execute this stage only if the branch name is 'dev' or 'master'
-                        expression {
-                            BRANCH_NAME == 'master' 
-                        }
-                    }
                     steps {
                         echo 'testing the app'
                     }
