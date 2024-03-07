@@ -1,10 +1,20 @@
 pipeline{
   agent any
   stages {
-    stage ('Build') {
+    stage ('Commit changes') {
       steps {
-        echo 'Running build automation'
-        archiveArtifacts artifacts: 'dist/trainSechedule.zip'
+        script {
+          sh "git commit -m 'update dbt schema'"
+        }
+      }
+    }
+    stage ('Push to Git Repository') {
+      steps {
+        script {
+          sshagent(['svc-vis-jenkins']) {
+            sh "git push origin main"
+          }
+        }
       }
     }
   }
