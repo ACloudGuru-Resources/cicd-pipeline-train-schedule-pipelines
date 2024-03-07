@@ -11,9 +11,7 @@ pipeline{
     stage ('Push to Git Repository') {
       steps {
         script {
-          sshagent(['svc-vis-jenkins']) {
-            sh "git push origin main"
-          }
+          sh "git push origin main"
         }
       }
     }
