@@ -18,7 +18,7 @@ pipeline{
     }
     stage ('Push to Git Repository') {
       steps {
-        withCredentials([gitUsernamePassword(credentialsId: 'github_key_o9yj', gitToolName: 'Default')]) {
+        script {
           sh "git push origin HEAD:main"
         }
       }
