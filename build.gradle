@@ -1,6 +1,6 @@
 plugins {
   //inlude the nodeJS plugin to execute nodejs and npm tasks
-  id "com.moowork.node" version "1.2.0"
+ id("com.github.node-gradle.node") version "2.2.4"
 }
 
 node {
