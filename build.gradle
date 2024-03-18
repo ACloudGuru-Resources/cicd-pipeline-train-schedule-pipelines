@@ -9,6 +9,14 @@ node {
 	npmVersion = "5.6.0"
 }
 
+repositories.whenObjectAdded {
+    if (it instanceof IvyArtifactRepository) {
+        metadataSources {
+            artifact()
+        }
+    }
+}
+
 //declare a build task
 task build
 
